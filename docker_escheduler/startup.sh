@@ -19,6 +19,7 @@ else
 		mysql --user=root --password=$MYSQL_ROOT_PWD -e "CREATE DATABASE IF NOT EXISTS \`$ESZ_DB\` CHARACTER SET utf8 COLLATE utf8_general_ci; FLUSH PRIVILEGES;"
 		echo "导入mysql数据"
 		nohup /opt/escheduler/script/create_escheduler.sh &
+		sleep 90
 	fi
 	
 	if [ `mysql --user=root --password=$MYSQL_ROOT_PWD -s -r -e  "SELECT count(TABLE_NAME) FROM information_schema.TABLES WHERE TABLE_SCHEMA='escheduler';" | grep -v count` -eq 38 ];then
@@ -29,7 +30,8 @@ else
 		echo "创建escheduler数据库"
                 mysql --user=root --password=$MYSQL_ROOT_PWD -e "CREATE DATABASE IF NOT EXISTS \`$ESZ_DB\` CHARACTER SET utf8 COLLATE utf8_general_ci; FLUSH PRIVILEGES;"
                 echo "导入mysql数据"
-                nohup /opt/escheduler/script/create_escheduler.sh & 
+                nohup /opt/escheduler/script/create_escheduler.sh &
+                sleep 90
 	fi
 fi
 
